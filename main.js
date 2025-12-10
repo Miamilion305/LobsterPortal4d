@@ -8,8 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const shareableLink = document.getElementById('shareableLink');
     const successMessage = document.getElementById('successMessage');
 
-    // Generate a unique ID
+    // Generate a unique ID using crypto API for better security
     function generateUniqueId() {
+        if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+            return crypto.randomUUID();
+        }
+        // Fallback for older browsers
         return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     }
 
@@ -19,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             return btoa(name);
         } catch (e) {
+            console.warn('Failed to encode experience name:', e);
             return '';
         }
     }
@@ -110,12 +115,30 @@ document.addEventListener('DOMContentLoaded', function() {
         const welcomeDiv = document.createElement('div');
         welcomeDiv.className = 'card';
         welcomeDiv.style.marginBottom = '20px';
-        welcomeDiv.innerHTML = `
-            <h2>🎉 Welcome to a Shared Experience!</h2>
-            <p><strong>Experience:</strong> ${name}</p>
-            <p><strong>ID:</strong> ${id}</p>
-            <p>You've arrived via a shareable link. Create your own experience below!</p>
-        `;
+        
+        // Create elements safely without innerHTML to prevent XSS
+        const h2 = document.createElement('h2');
+        h2.textContent = '🎉 Welcome to a Shared Experience!';
+        
+        const p1 = document.createElement('p');
+        const strong1 = document.createElement('strong');
+        strong1.textContent = 'Experience: ';
+        p1.appendChild(strong1);
+        p1.appendChild(document.createTextNode(name));
+        
+        const p2 = document.createElement('p');
+        const strong2 = document.createElement('strong');
+        strong2.textContent = 'ID: ';
+        p2.appendChild(strong2);
+        p2.appendChild(document.createTextNode(id));
+        
+        const p3 = document.createElement('p');
+        p3.textContent = "You've arrived via a shareable link. Create your own experience below!";
+        
+        welcomeDiv.appendChild(h2);
+        welcomeDiv.appendChild(p1);
+        welcomeDiv.appendChild(p2);
+        welcomeDiv.appendChild(p3);
         
         const main = document.querySelector('main');
         const firstCard = main.querySelector('.card');
