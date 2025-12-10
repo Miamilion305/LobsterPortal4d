@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lobster Portal 4D - Share Your Journey</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🦞 Lobster Portal 4D</h1>
+            <p class="subtitle">Share Your Time Travel Experience</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>Generate Shareable Link</h2>
+                <p>Create a unique link to share your quantum lobster experience with others!</p>
+                
+                <div class="input-group">
+                    <label for="experienceId">Experience Name (optional):</label>
+                    <input type="text" id="experienceId" placeholder="Enter a custom name...">
+                </div>
+
+                <button id="generateBtn" class="btn btn-primary">
+                    Generate Shareable Link 🔗
+                </button>
+
+                <div id="linkOutput" class="link-output hidden">
+                    <label>Your Shareable Link:</label>
+                    <div class="link-container">
+                        <input type="text" id="shareableLink" readonly>
+                        <button id="copyBtn" class="btn btn-copy">
+                            📋 Copy
+                        </button>
+                    </div>
+                    <p class="success-message hidden" id="successMessage">✅ Link copied to clipboard!</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3>📚 How It Works</h3>
+                <ul>
+                    <li>Enter an optional custom name for your experience</li>
+                    <li>Click "Generate Shareable Link" to create your unique URL</li>
+                    <li>Copy the link and share it with anyone</li>
+                    <li>Recipients can visit the link to see your quantum simulation</li>
+                </ul>
+            </div>
+        </main>
+
+        <footer>
+            <p>🌊 Exploring the 4th Dimension, One Lobster at a Time 🦞</p>
+        </footer>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
