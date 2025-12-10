@@ -29,8 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Simulate quantum measurement delay
         setTimeout(() => {
             // Quantum measurement: Random collapse to |0⟩ or |1⟩
-            const superpositionState = Math.random() < 0.5 ? 0 : 1;
-            const finalState = superpositionState;
+            const finalState = Math.random() < 0.5 ? 0 : 1;
 
             // Display result
             displayResult(finalState);
